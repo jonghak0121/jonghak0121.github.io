@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Project 3 · Forward Kinematics Choreography</title>
+  <style>
+    :root { color-scheme: dark; font: 16px/1.6 system-ui, sans-serif; background: #10151d; color: #e6edf5; }
+    body { max-width: 1000px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+    h1, h2 { line-height: 1.2; }
+    h1 { font-size: clamp(2rem, 6vw, 3.3rem); margin-bottom: .4rem; }
+    .intro { color: #aebed0; font-size: 1.1rem; }
+    figure { margin: 2rem 0; }
+    figure img { display: block; width: 100%; height: auto; border: 1px solid #334155; border-radius: 12px; }
+    figcaption, .muted { color: #aebed0; }
+    section { margin-top: 2.5rem; }
+    code, pre { background: #1b2634; border-radius: 5px; }
+    code { padding: .12rem .35rem; }
+    pre { padding: 1rem; overflow-x: auto; }
+    a { color: #80d8ff; }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="muted">EECS 367 · Project 3</p>
+    <h1>Forward kinematics in motion</h1>
+    <p class="intro">A small robot arm follows a looping finite-state-machine choreography, with every link pose drawn from the runtime’s <code>/xform_world</code> output.</p>
+  </header>
+
+  <figure>
+    <img src="choreography.gif" alt="The custom five-link demo arm moves through its looping home, reach, and wave choreography">
+    <figcaption>Recorded custom demo arm performing the home → reach → wave → home choreography.</figcaption>
+  </figure>
+
+  <section>
+    <h2>Robot and choreography</h2>
+    <p>The robot is a custom five-link arm with shoulder, elbow, and wrist joints. The finite state machine moves it from a neutral home pose to a reach, then to a wave pose, and returns home before repeating.</p>
+  </section>
+
+  <section>
+    <h2>How it is rendered</h2>
+    <p>The viewer is an external Python TCP/JSON client. It subscribes to <code>/xform_world</code>, reads each link’s column-major 4×4 matrix, and draws links and local axes on a canvas. The viewpoint stays fixed in world coordinates, and each link keeps the same color throughout the motion.</p>
+    <p>The viewer source and run instructions are included in the <a href="viewer/">viewer folder</a>. The recording and page are in this folder for easy upload to a course portfolio site or GitHub Pages.</p>
+  </section>
+
+  <footer class="muted"><p>This demo uses a custom robot description, not the Fetch robot.</p></footer>
+</body>
+</html>
